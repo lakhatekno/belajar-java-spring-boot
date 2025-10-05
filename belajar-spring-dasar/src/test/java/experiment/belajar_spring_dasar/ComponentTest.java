@@ -1,5 +1,6 @@
 package experiment.belajar_spring_dasar;
 
+import experiment.belajar_spring_dasar.data.MultiFoo;
 import experiment.belajar_spring_dasar.repository.CategoryRepository;
 import experiment.belajar_spring_dasar.repository.CustomerRepository;
 import experiment.belajar_spring_dasar.repository.ProductRepository;
@@ -52,8 +53,14 @@ public class ComponentTest {
         CustomerRepository normalCustomerRepository = applicationContext.getBean("normalCustomerRepository", CustomerRepository.class);
         CustomerRepository premiumCustomerRepository = applicationContext.getBean("premiumCustomerRepository", CustomerRepository.class);
 
-        
+
         Assertions.assertSame(normalCustomerRepository, customerService.getNormalCustomerRepository());
         Assertions.assertSame(premiumCustomerRepository, customerService.getPremiumCustomerRepository());
+    }
+
+    @Test
+    void testObjectProvider() {
+        MultiFoo multiFoo = applicationContext.getBean(MultiFoo.class);
+        Assertions.assertEquals(3, multiFoo.getFoos().size());
     }
 }

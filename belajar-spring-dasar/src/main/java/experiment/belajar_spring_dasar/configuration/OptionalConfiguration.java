@@ -1,26 +1,25 @@
 package experiment.belajar_spring_dasar.configuration;
 
+import experiment.belajar_spring_dasar.data.Bar;
 import experiment.belajar_spring_dasar.data.Foo;
+import experiment.belajar_spring_dasar.data.FooBar;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
+
+import java.util.Optional;
 
 @Configuration
-public class FooConfiguration {
+public class OptionalConfiguration {
 
-    @Primary
     @Bean
     public Foo foo() {
         return new Foo();
     }
 
     @Bean
-    public Foo foo2() {
-        return new Foo();
+    public FooBar fooBar(Optional<Foo> foo, Optional<Bar> bar) {
+        return new FooBar(foo.orElse(null), bar.orElse(null));
     }
 
-    @Bean
-    public Foo foo3() {
-        return new Foo();
-    }
+
 }
